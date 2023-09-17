@@ -44,16 +44,35 @@
           </td>
           <td id="table_mainR2C2">
             <form id="ask_question_form" >
-              <label for="title">
-                <pre id="qTitle">
+              <label for="qform_title">
+                <p id="qTitle">
                   Question Title <br>
                   Limit Title to 100 characters or less
-                </pre>               
-              </label><br>
-              <input type="text" id="fname" name="fname" value="John"><br>
-              <label for="lname">Last name:</label><br>
-              <input type="text" id="lname" name="lname" value="Doe"><br><br>
-              <input type="submit" value="Submit">
+                </p>               
+              </label>
+              <input type="text" id="qform_title" value="Enter Title.."><br><br>
+              <label for="qform_text">
+                <p id="qText">
+                  Question Text <br>
+                  Add Details
+                </p>
+              </label>
+              <input type="text" id="qform_text" value="Enter Question.."><br><br>
+
+              <label for="qform_tags">
+                <p id="qTags">
+                  Tags <br>
+                  Add Keywords separated by whitespace
+                </p>
+              </label>
+              <input type="text" id="qform_tags" class="tags" value="Enter Tags.." ><br><br>
+              <label for="qform_username">
+                <p id="qUsername">
+                  Username 
+                </p>
+              </label>
+              <input type="text" id="qform_username" class="username" value="Enter Username.."><br><br><br>
+              <input type="submit" id="qform_submit" value="Post Question">
             </form> 
           </td>
         </tr>
