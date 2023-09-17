@@ -1,13 +1,25 @@
 <html>
-<head>
-  <link rel="stylesheet" href="css/index.css">
-  <script type="module" src="src/index.js"></script>
-</head>
-<body>
-  <div id="header" class="header">
-  </div>
+  <head>
+    <link rel="stylesheet" href="css/index.css" />
+    <script type="module" src="src/index.js"></script>
+    <title>Stack Overflow Clone</title>
+  </head>
+  <body>
+    <div id="header" class="header" >
+      <section id="empty0" class="header"></section>
+      <p id="page_title" class="header">Fake StackOverflow</p>
+      <section id="searchbar" class="header">
+        <input type="text" placeholder="Search.." />
+      </section>
+    </div>
 
-  <div id="main" class="main">
-  </div>
-</body>
+    <div id="main" class="main">
+      <aside id="sidebar" class="sidebar">
+        <button id="questions" class="sidebar_items">Questions</button>
+        <button id="tags" class="sidebar_items">Tags</button>
+      </aside>
+    </div>
+
+    <div class="top_nav"></div>
+  </body>
 </html>

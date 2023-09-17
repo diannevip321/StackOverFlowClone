@@ -1,1 +1,63 @@
 /* Add CSS stylesheet */
+body{
+  margin: 0%;
+}
+
+.header{
+  background-color: lightgray;
+  height: 10%;
+  width: 100%;
+  display: flex;
+
+}
+
+#empty0{
+  width:33%;
+  height: 100%;
+}
+
+#page_title{
+  font-weight: bolder;
+  font-size: xx-large;
+  height:100%;
+  width:33%;
+  text-align: center;
+  margin: 0%;
+  align-items: center;
+
+  
+
+
+}
+
+#searchbar{
+  height:100%;
+  width:33%;
+  
+  
+ 
+}
+
+.sidebar{
+  float: left;
+  width: 150px;
+  height: 100%;
+  border-right: 20px;
+  border-color: lightgray;
+  border-style: dashed;
+  border-width: 3px;
+
+}
+
+.sidebar_items{
+  border: none;
+  color: blue;
+  width: 100%;
+  background-color: transparent;
+  margin-top: 30%;
+  margin-bottom: 10%;
+  
+}
+
+
+
