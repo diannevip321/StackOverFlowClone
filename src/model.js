@@ -1,9 +1,11 @@
 export default class Model {
+
+  
   constructor() {
     this.data = {
       questions: [
                   {
-                    qid: 'q1',
+                    qid: 'q1', 
                     title: 'Programmatically navigate using React router',
                     text: 'the alert shows the proper index for the li clicked, and when I alert the variable within the last function I\'m calling, moveToNextImage(stepClicked), the same value shows but the animation isn\'t happening. This works many other ways, but I\'m trying to pass the index value of the list item clicked to use for the math to calculate.',
                     tagIds: ['t1', 't2'],

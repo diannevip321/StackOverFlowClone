@@ -5,19 +5,59 @@
     <title>Stack Overflow Clone</title>
   </head>
   <body>
-    <div id="header" class="header" >
-      <section id="empty0" class="header"></section>
-      <p id="page_title" class="header">Fake StackOverflow</p>
-      <section id="searchbar" class="header">
-        <input type="text" placeholder="Search.." />
-      </section>
+    <div id="header1" class="header" >
+      <table id="table_header" >
+        <tr id="table_headerR1">
+          <td id="table_headerC1">
+            
+          </td>
+          <td id="table_headerC2">
+            <h1>Stack Overflow Clone</h1>
+          </td>
+          <td id="table_headerC3">
+            <input type="text" id="searchbar1" placeholder="Search.." />
+          </td>
+        </tr>
+      </table>
     </div>
 
     <div id="main" class="main">
-      <aside id="sidebar" class="sidebar">
-        <button id="questions" class="sidebar_items">Questions</button>
-        <button id="tags" class="sidebar_items">Tags</button>
-      </aside>
+      <table id="table_main">
+        <tr id="table_mainR1">
+          <td id="table_mainR1C1">
+            <button id="questions" class="sidebar_items">Questions</button>
+          </td>
+          <td id="table_mainR1C2">
+            <h2>All Questions</h2>
+          </td>
+          <td id="table_mainR1C3">
+            <!-- Null -->
+          </td>
+          <td id="table_mainR1C4">
+            <button id="ask_question" >Ask Question</button>
+          </td>
+          
+        </tr>
+        <tr id="table_mainR2">
+          <td id="table_mainR2C1">
+            <button id="tags" class="sidebar_items">Tags</button>
+          </td>
+          <td id="table_mainR2C2">
+            <form id="ask_question_form" >
+              <label for="title">
+                <pre id="qTitle">
+                  Question Title <br>
+                  Limit Title to 100 characters or less
+                </pre>               
+              </label><br>
+              <input type="text" id="fname" name="fname" value="John"><br>
+              <label for="lname">Last name:</label><br>
+              <input type="text" id="lname" name="lname" value="Doe"><br><br>
+              <input type="submit" value="Submit">
+            </form> 
+          </td>
+        </tr>
+      </table>
     </div>
 
     <div class="top_nav"></div>
