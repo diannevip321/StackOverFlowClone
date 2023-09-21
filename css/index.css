@@ -1,5 +1,5 @@
 /* Add CSS stylesheet */
-body{
+/* body{
   margin: 0%;
 }
 
@@ -51,11 +51,6 @@ body{
 }
 
 
-#table_mainR2C2{
-  height: 70px;
-  width: 250px;
-  align-items: center;
-}
 
 
 .sidebar_items{
@@ -71,9 +66,131 @@ body{
 #ask_question{
   color: aliceblue;
   background-color: rgb(86, 139, 204);
-  width: 100px;
+  width: 130px;
   height: 50px;
 }
 
 
+#table_mainR1C2{
+  width: 100%;
+  height: 100%;
+}
 
+
+#table_sidebar{
+  width: 260px;
+  height: 402px;
+  border-style: dashed;
+  border-radius: 10px;
+}
+
+#table_right{
+  width: 100%;
+  height: 404;
+}
+
+#R1_table_right{
+  height: 12%;
+
+}
+
+#R2_table_right{
+  height: 20%
+} */
+
+
+#container{
+    display: grid;
+    width:100%;
+    height: 100vh;
+    grid-template-rows: 15% 680px;
+    grid-template-columns: 1fr 6fr;
+
+}
+
+header{
+    grid-column: 1 / 3; 
+    grid-row: 1 / 2; 
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0;
+
+    background: lightgray;
+    color: black;
+    font-weight: bold;
+
+    display: grid;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    
+
+}
+
+aside{
+    grid-column: 1/2;
+    grid-row: 2/3;
+    color: blue;
+    background: white;
+    border-right: dashed;
+    border-right-color: black;
+    border-bottom: dashed;
+    border-bottom-color: black;
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+main{
+    grid-column: 2/2;
+    grid-row: 2/3;
+
+    display: grid;
+    width:auto;
+    height: auto;
+
+    grid-template-rows: 70px 70px 70px;
+   
+    
+}
+
+main > .main-R1{
+   display: flex;
+   flex-direction: row;
+   width: auto;
+   align-items: center;
+   justify-content:space-between;
+   padding: 20px;
+ 
+}
+
+#title-All_Questions{
+
+
+}
+
+#ask_question{
+    color: aliceblue;
+    background-color: rgb(86, 139, 204);
+   
+  }
+
+main > .main-R2{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px
+}
+
+
+
+.three-buttons{
+    width: 10%;
+    margin: 0 auto;
+    display: inline;
+    flex-grow: 1;
+
+}
