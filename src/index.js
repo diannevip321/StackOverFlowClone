@@ -10,11 +10,9 @@ window.onload = function () {
         console.log("Questions clicked");
     };
 
-    document.getElementById("tags").onclick = function () {
-        console.log("Tags clicked");
-    };
 
     document.getElementById("tags").onclick = function () {
+        console.log("Tags clicked");
         const tag_page = document.getElementById("main");
 
         while (tag_page.firstChild) {
@@ -23,23 +21,11 @@ window.onload = function () {
 
         // map() returns an array of tag divs
         // for each() iterates through the array of tag divs
-        const tags = model.data.tags.map((tag) => createTagBox(tag)).forEach((tagBox) => tag_page.appendChild(tagBox));
+        const tags = model.data.tags.map((tag) => tag.createTagBox()).forEach((tagBox) => tag_page.appendChild(tagBox));
 
     
     }
 
-    function createTagBox(tag){
-        const div = document.createElement("div");
-        div.classList = "tagbox";
-        const a = document.createElement("a");
-        a.textContent = tag.name;
-        div.appendChild(a);
-        const p = document.createElement("p");
-        p.textContent = tag.count;
-        div.appendChild(p);
-        return div;
-
-    }
 
     // Adding new HTML form when ask question is clicked to replace home screen
     document.getElementById("ask_question").onclick = function () {
@@ -117,7 +103,7 @@ window.onload = function () {
 
     }
 
-
+    // method to create form html
     function createFieldForm(
         form,
         lid,
@@ -164,7 +150,7 @@ window.onload = function () {
         // Creating a new question instance
         const tag_ids = model.getTagIds(tags);
 
-        const question = new Question(title, text, tag_ids, username);
+        const question = new Question(model, title, text, tag_ids, username);
 
         // Below, .questions is an array which is why we can use the push method
         model.data.questions.push(question);

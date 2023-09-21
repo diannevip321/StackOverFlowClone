@@ -27,22 +27,22 @@ export default class Model {
                 },
             ],
             tags: [
-                {
-                    tid: "t1",
-                    name: "react",
-                },
-                {
-                    tid: "t2",
-                    name: "javascript",
-                },
-                {
-                    tid: "t3",
-                    name: "android-studio",
-                },
-                {
-                    tid: "t4",
-                    name: "shared-preferences",
-                },
+                // {
+                //     tid: "t1",
+                //     name: "react",
+                // },
+                // {
+                //     tid: "t2",
+                //     name: "javascript",
+                // },
+                // {
+                //     tid: "t3",
+                //     name: "android-studio",
+                // },
+                // {
+                //     tid: "t4",
+                //     name: "shared-preferences",
+                // },
             ],
 
             answers: [
@@ -106,6 +106,16 @@ export default class Model {
         this.data.tags.push(new_tag);
         return new_tag.tid;
     }
+
+    getTagById = (tagId) => {
+        return this.data.tags.find((tag) => tag.tid === tagId);
+        
+
+    }
+
+    // getTagsByIds = (tagIds) => {
+    //     return this.data.tag.map((tag))
+    // }
 
 
 

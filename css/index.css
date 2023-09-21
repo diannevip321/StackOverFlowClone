@@ -150,7 +150,7 @@ main{
     width:auto;
     height: auto;
 
-    grid-template-rows: 70px 70px 70px;
+    /* grid-template-rows: 70px 70px 70px 70px; */
    
     
 }
@@ -192,5 +192,16 @@ main > .main-R2{
     margin: 0 auto;
     display: inline;
     flex-grow: 1;
+
+}
+
+.tagbox{
+    border: dashed;
+    margin: auto;
+    width: 20%;
+    height: 40%;
+    text-align: center;
+  
+    
 
 }
