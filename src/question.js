@@ -1,4 +1,6 @@
-import model from "./model";
+import model from "./model.js";
+
+
 export default class Question {
     // model;
     static qid = 1;
