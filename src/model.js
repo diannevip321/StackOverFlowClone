@@ -1,30 +1,34 @@
 import Tag from "./Tag.js";
 
-export default class Model {
+
+
+
+
+export class Model {
     constructor() {
         this.data = {
             questions: [
-                {
-                    qid: "q1",
-                    title: "Programmatically navigate using React router",
-                    text: "the alert shows the proper index for the li clicked, and when I alert the variable within the last function I'm calling, moveToNextImage(stepClicked), the same value shows but the animation isn't happening. This works many other ways, but I'm trying to pass the index value of the list item clicked to use for the math to calculate.",
-                    tagIds: ["t1", "t2"],
-                    askedBy: "JoJi John",
-                    askDate: new Date("December 17, 2020 03:24:00"),
-                    ansIds: ["a1", "a2"],
-                    views: 10,
-                },
-                {
-                    qid: "q2",
-                    title:
-                        "android studio save string shared preference, start activity and load the saved string",
-                    text: "I am using bottom navigation view but am using custom navigation, so my fragments are not recreated every time i switch to a different view. I just hide/show my fragments depending on the icon selected. The problem i am facing is that whenever a config change happens (dark/light theme), my app crashes. I have 2 fragments in this activity and the below code is what i am using to refrain them from being recreated.",
-                    tagIds: ["t3", "t4", "t2"],
-                    askedBy: "saltyPeter",
-                    askDate: new Date("January 01, 2022 21:06:12"),
-                    ansIds: ["a3", "a4", "a5"],
-                    views: 121,
-                },
+                // {
+                //     qid: "q1",
+                //     title: "Programmatically navigate using React router",
+                //     text: "the alert shows the proper index for the li clicked, and when I alert the variable within the last function I'm calling, moveToNextImage(stepClicked), the same value shows but the animation isn't happening. This works many other ways, but I'm trying to pass the index value of the list item clicked to use for the math to calculate.",
+                //     tagIds: ["t1", "t2"],
+                //     askedBy: "JoJi John",
+                //     askDate: new Date("December 17, 2020 03:24:00"),
+                //     ansIds: ["a1", "a2"],
+                //     views: 10,
+                // },
+                // {
+                //     qid: "q2",
+                //     title:
+                //         "android studio save string shared preference, start activity and load the saved string",
+                //     text: "I am using bottom navigation view but am using custom navigation, so my fragments are not recreated every time i switch to a different view. I just hide/show my fragments depending on the icon selected. The problem i am facing is that whenever a config change happens (dark/light theme), my app crashes. I have 2 fragments in this activity and the below code is what i am using to refrain them from being recreated.",
+                //     tagIds: ["t3", "t4", "t2"],
+                //     askedBy: "saltyPeter",
+                //     askDate: new Date("January 01, 2022 21:06:12"),
+                //     ansIds: ["a3", "a4", "a5"],
+                //     views: 121,
+                // },
             ],
             tags: [
                 // {
@@ -126,4 +130,7 @@ export default class Model {
 
 
 }
+
+const model = new Model();
+export default model;
 

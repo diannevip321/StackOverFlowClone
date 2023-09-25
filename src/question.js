@@ -1,5 +1,6 @@
+import model from "./model";
 export default class Question {
-    model;
+    // model;
     static qid = 1;
     title = "";
     text = "";
@@ -13,7 +14,7 @@ export default class Question {
 
     // constructor 
     constructor(model, title, text, tagId, askedBy) {
-        this.model = model;
+        // this.model = model;
         this.title = title;
         this.text = text;
         this.tagId = tagId;
@@ -42,7 +43,7 @@ export default class Question {
         title.textContent = this.title;
         divCenter.appendChild(title);
         const divTags = document.createElement("div");
-        const tags = this.model.getTagsByIds(this.tagId);
+        const tags = model.getTagsByIds(this.tagId);
         tags.forEach((tags) => {
             const button = document.createElement("button");
             button.textContent = tags.name;
@@ -62,10 +63,9 @@ export default class Question {
 
     }
 
-
     getTimeString = (currentTime) => {
         // const currentTime = new Date();
-        const elapasedTimeSeconds = Math.floor((currentTime.getTime() - this.askDate.getTime()) / 1000); 
+        const elapasedTimeSeconds = Math.floor((currentTime.getTime() - this.askDate.getTime()) / 1000);
         const elapasedTimeMinutes = Math.floor(elapasedTimeSeconds / 60);
         const elapasedTimeHours = Math.floor(elapasedTimeMinutes / 60);
         const elapasedTimeDays = Math.floor(elapasedTimeHours / 24);
@@ -74,58 +74,58 @@ export default class Question {
         console.log(elapasedTimeSeconds);
         console.log(elapasedTimeMinutes);
 
-        if (elapasedTimeMinutes === 0){
+        if (elapasedTimeMinutes === 0) {
             return `${this.askedBy} asked ${elapasedTimeSeconds} seconds ago.`
         }
-        else if (elapasedTimeHours === 0){
+        else if (elapasedTimeHours === 0) {
             return `${this.askedBy} asked ${elapasedTimeMinutes} minutes ago.`
         }
-        else if (elapasedTimeDays === 0){
+        else if (elapasedTimeDays === 0) {
             return `${this.askedBy} asked ${elapasedTimeHours} hours ago.`
         }
-        else if (elapsedTimeYears === 0){
+        else if (elapsedTimeYears === 0) {
             const month = this.askDate.toLocaleString('default', { month: 'short' });
             const day = this.askDate.getDate();
             const hours = this.askDate.getHours();
             const mins = this.askDate.getMinutes();
 
-            if (hours < 10 && mins < 10){
+            if (hours < 10 && mins < 10) {
                 return `${this.askedBy} asked ${month} ${day} at 0${hours}:0${mins}.`
             }
-            else if (hours < 10){
+            else if (hours < 10) {
                 return `${this.askedBy} asked ${month} ${day} at 0${hours}:${mins}.`
             }
-            else if (mins < 10){
+            else if (mins < 10) {
                 return `${this.askedBy} asked ${month} ${day} at ${hours}:0${mins}.`
             }
-            else{
+            else {
                 return `${this.askedBy} asked ${month} ${day} at ${hours}:${mins}.`
             }
-        
 
-           
+
+
         }
-        else if (elapsedTimeYears >= 1){
+        else if (elapsedTimeYears >= 1) {
             const year = this.askDate.getFullYear();
             const month = this.askDate.toLocaleString('default', { month: 'short' });
             const day = this.askDate.getDate();
             const hours = this.askDate.getHours();
             const mins = this.askDate.getMinutes();
 
-            if (hours < 10 && mins < 10){
+            if (hours < 10 && mins < 10) {
                 return `${this.askedBy} asked ${month} ${day}, ${year} at 0${hours}:0${mins}.`
             }
-            else if (hours < 10){
+            else if (hours < 10) {
                 return `${this.askedBy} asked ${month} ${day}, ${year} at 0${hours}:${mins}.`
             }
-            else if (mins < 10){
+            else if (mins < 10) {
                 return `${this.askedBy} asked ${month} ${day}, ${year} at ${hours}:0${mins}.`
             }
-            else{
+            else {
                 return `${this.askedBy} asked ${month} ${day}, ${year} at ${hours}:${mins}.`
             }
 
-            
+
 
         }
 
@@ -133,7 +133,7 @@ export default class Question {
 
 
 
-        
+
 
 
 
