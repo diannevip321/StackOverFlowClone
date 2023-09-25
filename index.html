@@ -1,19 +1,23 @@
 <html>
-  <head>
+
+<head>
     <link rel="stylesheet" href="css/index.css" />
     <script type="module" src="src/index.js"></script>
     <title>Stack Overflow Clone</title>
-  </head>
-  <body>
-    <div id ="container">
+</head>
+
+<body>
+    <div id="container">
         <header>
             <div></div>
-            <div style="text-align: center;"><h1>Stack Overflow Clone</h1></div>
-            <div ><input type="text" id="searchbox" style="margin-left: 40%;" placeholder="Search.." /></div>
+            <div style="text-align: center;">
+                <h1>Stack Overflow Clone</h1>
+            </div>
+            <div><input type="text" id="searchbox" style="margin-left: 40%;" placeholder="Search.." /></div>
         </header>
         <aside>
-            <button id="questions" class="sidebar_items" >Questions</button>
-            <button id="tags" class="sidebar_items">Tags</button> 
+            <button id="questions" class="sidebar_items">Questions</button>
+            <button id="tags" class="sidebar_items">Tags</button>
         </aside>
         <main id="main">
             <div class="main-R1">
@@ -22,9 +26,11 @@
             </div>
             <div class="main-R2">
                 <p>Number of Questions</p>
-                <button id="newest" class="three-buttons">Newest</button>
-                <button id="active" class="three-buttons">Active</button>
-                <button id="unanswered" class="three-buttons" >Unanswered</button>
+                <div id="three_buttons">
+                    <button id="newest" class="three-buttons">Newest</button>
+                    <button id="active" class="three-buttons">Active</button>
+                    <button id="unanswered" class="three-buttons">Unanswered</button>
+                </div>
             </div>
         </main>
     </div>
@@ -79,8 +85,9 @@
       </table>
     </div>  -->
 
-    
+
 
     <div class="top_nav"></div>
-  </body>
+</body>
+
 </html>

@@ -2,7 +2,7 @@ export default class Tag {
     // Data Fields
     static tid = 1;
     tid;
-    name = "Jane Doe";
+    name = "";
     count = 1;
 
     // Constructor

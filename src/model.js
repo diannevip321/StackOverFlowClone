@@ -79,7 +79,7 @@ export default class Model {
             ],
         };
     }
-    
+
 
     /**
      * 
@@ -92,7 +92,7 @@ export default class Model {
             tag_ids.push(this.getTagId(tag_names[i]));
         }
         return tag_ids;
-    };
+    }
 
 
     getTagId = (tag_name) => {
@@ -108,14 +108,18 @@ export default class Model {
     }
 
     getTagById = (tagId) => {
+        // find returns a tag object as it is called on the this.data.tags
         return this.data.tags.find((tag) => tag.tid === tagId);
-        
-
     }
 
-    // getTagsByIds = (tagIds) => {
-    //     return this.data.tag.map((tag))
-    // }
+    
+    getTagsByIds = (tagIds) => {
+        // filter returns an array of tag objects as it is called on the this.data.tags
+        const tags_array = [];
+        tagIds.forEach((tagIds) => tags_array.push(this.getTagById(tagIds)));
+        return tags_array;
+        
+    }
 
 
 
