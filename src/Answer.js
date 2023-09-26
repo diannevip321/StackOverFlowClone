@@ -1,4 +1,4 @@
-import model from "./model";
+
 export default class Answer{
     
     static aid = 1;
@@ -9,8 +9,8 @@ export default class Answer{
 
     constructor(text, ansBy){
         this.text = text;
-        this.ansBy = andBy;
-        this.aid =  Answer.aid++;
+        this.ansBy = ansBy;
+        this.aid =  'a' + Answer.aid++;
     }
 
     

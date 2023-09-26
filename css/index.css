@@ -247,3 +247,32 @@ main > .main-R2{
    
     
 }
+
+.questionHeaderR1{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* padding: 2%; */
+    height: 35%;
+
+}
+
+.questionHeaderR2{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* padding: 2%; */
+    
+    border-bottom: dashed;
+    border-color: lightgray;
+    height: 65%;
+   
+   
+
+}
+
+.questionHeader{
+    height : 40%;
+    padding-right: 2%;
+    padding-left: 2%;
+}

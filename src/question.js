@@ -1,4 +1,6 @@
 import model from "./model.js";
+import { createAskQuestionButton } from "./index.js";
+import { answerForm } from "./index.js";
 
 
 export default class Question {
@@ -9,7 +11,7 @@ export default class Question {
     tagId = [];
     askedBy = "";
     askDate = new Date();
-    andId = [];
+    ansIds = [];     //orginally andId
     views = 0;
 
 
@@ -21,7 +23,7 @@ export default class Question {
         this.text = text;
         this.tagId = tagId;
         this.askedBy = askedBy;
-        this.qid = Question.qid++;
+        this.qid = 'q' + Question.qid++;
     }
 
     createQuestionBox = () => {
@@ -31,11 +33,11 @@ export default class Question {
         const divLeft = document.createElement("div");
         divLeft.classList = "questionNumAnsViews";
         const p1 = document.createElement("p");
-        p1.textContent = this.andId.length;
+        p1.textContent = this.ansIds.length + " answers";
         divLeft.append(p1);
         div.appendChild(divLeft);
         const p2 = document.createElement("p");
-        p2.textContent = this.views;
+        p2.textContent = this.views + " views";
         divLeft.append(p2);
         div.appendChild(divLeft);
 
@@ -43,6 +45,17 @@ export default class Question {
         divCenter.classList = "questionTitleTags";
         const title = document.createElement("h4");
         title.textContent = this.title;
+        title.onclick = () => {
+            this.views++;
+            const mainPage = document.getElementById("main");
+            while (mainPage.firstChild) {
+                mainPage.removeChild(mainPage.firstChild);
+            }
+            mainPage.appendChild(this.createQuestionPage());
+            
+
+
+        }
         divCenter.appendChild(title);
         const divTags = document.createElement("div");
         const tags = model.getTagsByIds(this.tagId);
@@ -127,15 +140,63 @@ export default class Question {
                 return `${this.askedBy} asked ${month} ${day}, ${year} at ${hours}:${mins}.`
             }
 
-
-
         }
 
         return "Hello Peets";
+    }
+
+    createQuestionPage = () => {
+        const questionPage = document.createElement("div");
+        questionPage.classList = "questionPage"
+        const questionHeader = document.createElement("div");
+        questionHeader.classList = "questionHeader"
+        const questionHeaderR1 = document.createElement("div");
+        questionHeaderR1.classList = "questionHeaderR1"
+        const numAnswers = document.createElement("p");
+        numAnswers.textContent = this.ansIds.length + " answers";
+        questionHeaderR1.appendChild(numAnswers);
+        const title = document.createElement("h3");
+        title.textContent = this.title;
+        questionHeaderR1.appendChild(title);
+        // const askQuestion = document.createElement("button");
+        // askQuestion.id = "ask_question";
+        // askQuestion.textContent = "Ask Question";
+        questionHeaderR1.appendChild(createAskQuestionButton());
+        questionHeader.appendChild(questionHeaderR1);
+        const questionHeaderR2 = document.createElement("div");
+        questionHeaderR2.classList = "questionHeaderR2"
+        const numViews = document.createElement("p");
+        numViews.textContent = this.views + " views";
+        questionHeaderR2.appendChild(numViews);
+        const textBody = document.createElement("p");
+        textBody.textContent = this.text;
+        questionHeaderR2.appendChild(textBody);
+        const date = document.createElement("p");
+        date.textContent = this.getTimeString(new Date());
+        questionHeaderR2.appendChild(date);
+        questionHeader.appendChild(questionHeaderR2);
+        questionPage.appendChild(questionHeader);
 
 
+        const questionAnswers = document.createElement("div");
+        questionPage.appendChild(questionAnswers);
 
+        const postAnswer = document.createElement("div");
+        const postAnswerButton = document.createElement("button");
+        postAnswerButton.textContent = "Answer Question";
+        postAnswerButton.addEventListener("click", () => {
+            const mainPage = document.getElementById("main");
+            while (mainPage.firstChild) {
+                mainPage.removeChild(mainPage.firstChild);
+            }
+            mainPage.appendChild(answerForm(this));
+        })
+        postAnswer.appendChild(postAnswerButton);
+        
 
+        questionPage.appendChild(postAnswer);
+
+        return questionPage;
 
 
 

@@ -1,4 +1,5 @@
 import Tag from "./Tag.js";
+import Question from "./Question.js";
 
 
 
@@ -50,36 +51,36 @@ export class Model {
             ],
 
             answers: [
-                {
-                    aid: "a1",
-                    text: "React Router is mostly a wrapper around the history library. history handles interaction with the browser's window.history for you with its browser and hash histories. It also provides a memory history which is useful for environments that don't have a global history. This is particularly useful in mobile app development (react-native) and unit testing with Node.",
-                    ansBy: "hamkalo",
-                    ansDate: new Date("March 02, 2022 15:30:00"),
-                },
-                {
-                    aid: "a2",
-                    text: "On my end, I like to have a single history object that I can carry even outside components. I like to have a single history.js file that I import on demand, and just manipulate it. You just have to change BrowserRouter to Router, and specify the history prop. This doesn't change anything for you, except that you have your own history object that you can manipulate as you want. You need to install history, the library used by react-router.",
-                    ansBy: "azad",
-                    ansDate: new Date("January 31, 2022 15:30:00"),
-                },
-                {
-                    aid: "a3",
-                    text: "Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background.",
-                    ansBy: "abaya",
-                    ansDate: new Date("April 21, 2022 15:25:22"),
-                },
-                {
-                    aid: "a4",
-                    text: "YourPreference yourPrefrence = YourPreference.getInstance(context); yourPreference.saveData(YOUR_KEY,YOUR_VALUE);",
-                    ansBy: "alia",
-                    ansDate: new Date("December 02, 2022 02:20:59"),
-                },
-                {
-                    aid: "a5",
-                    text: "I just found all the above examples just too confusing, so I wrote my own. ",
-                    ansBy: "sana",
-                    ansDate: new Date("December 31, 2022 20:20:59"),
-                },
+                // {
+                //     aid: "a1",
+                //     text: "React Router is mostly a wrapper around the history library. history handles interaction with the browser's window.history for you with its browser and hash histories. It also provides a memory history which is useful for environments that don't have a global history. This is particularly useful in mobile app development (react-native) and unit testing with Node.",
+                //     ansBy: "hamkalo",
+                //     ansDate: new Date("March 02, 2022 15:30:00"),
+                // },
+                // {
+                //     aid: "a2",
+                //     text: "On my end, I like to have a single history object that I can carry even outside components. I like to have a single history.js file that I import on demand, and just manipulate it. You just have to change BrowserRouter to Router, and specify the history prop. This doesn't change anything for you, except that you have your own history object that you can manipulate as you want. You need to install history, the library used by react-router.",
+                //     ansBy: "azad",
+                //     ansDate: new Date("January 31, 2022 15:30:00"),
+                // },
+                // {
+                //     aid: "a3",
+                //     text: "Consider using apply() instead; commit writes its data to persistent storage immediately, whereas apply will handle it in the background.",
+                //     ansBy: "abaya",
+                //     ansDate: new Date("April 21, 2022 15:25:22"),
+                // },
+                // {
+                //     aid: "a4",
+                //     text: "YourPreference yourPrefrence = YourPreference.getInstance(context); yourPreference.saveData(YOUR_KEY,YOUR_VALUE);",
+                //     ansBy: "alia",
+                //     ansDate: new Date("December 02, 2022 02:20:59"),
+                // },
+                // {
+                //     aid: "a5",
+                //     text: "I just found all the above examples just too confusing, so I wrote my own. ",
+                //     ansBy: "sana",
+                //     ansDate: new Date("December 31, 2022 20:20:59"),
+                // },
             ],
         };
     }
@@ -124,7 +125,6 @@ export class Model {
         return tags_array;
         
     }
-
 
 
 
