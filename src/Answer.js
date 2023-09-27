@@ -13,6 +13,22 @@ export default class Answer{
         this.aid =  'a' + Answer.aid++;
     }
 
+    createAnswerBox = () => {
+        const divAnswerBox = document.createElement("div");
+        divAnswerBox.classList = "answeBox"
+        const divAnswerText = document.createElement("div");
+        const answerText = document.createElement("p")
+        answerText.id = "answerText";
+        divAnswerText.appendChild(answerText);
+
+        divAnswerBox.appendChild(divAnswerText);
+
+        const divAnswerUsernameDate = document.createElement("div");
+        divAnswerBox.appendChild(divAnswerUsernameDate);
+
+
+    }
+
     
 
 

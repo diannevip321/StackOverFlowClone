@@ -149,6 +149,7 @@ main{
     /* display: grid; */
     width:auto;
     height: auto;
+    overflow: scroll;
 
     /* grid-template-rows: 70px 70px 70px 70px; */
    
@@ -227,8 +228,10 @@ main > .main-R2{
 
 }
 
-.questionNumAnsViews p{
+.questionNumAnsViews {
     margin: 0%;
+    align-items: flex-start;
+    
 }
 
 .questionTitleTags h4{
@@ -275,4 +278,41 @@ main > .main-R2{
     height : 40%;
     padding-right: 2%;
     padding-left: 2%;
+}
+
+#ask_question_form{
+    padding-left: 25%;
+    padding-right: 25%;
+    overflow:scroll
+}
+
+.formTitle{
+    font-size:x-large;
+    margin-bottom: 0%;
+}
+
+.formHelperText{
+    font-style: italic;
+    font-size:small;
+    margin-top: 1.90%;
+}
+
+.formErrorText{
+    font-size: smaller;
+    color: rgb(231, 109, 109);
+    font-weight: bold;
+}
+
+.formInput{
+    width: 65%;
+    height: 5%
+}
+
+#qform_text{
+    height:25%
+}
+
+#answerForm{
+    padding-left: 25%;
+    padding-right: 25%;
 }

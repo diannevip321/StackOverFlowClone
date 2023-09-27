@@ -6,13 +6,11 @@ import Answer from "./Answer.js";
 
 
 window.onload = function () {
-
     const mainPage = document.getElementById("main");
     while (mainPage.firstChild) {
         mainPage.removeChild(mainPage.firstChild);
     }
     mainPage.appendChild(allQuestionsHeader());
-
 
     //Creating event listners for questions, tags
     document.getElementById("questions").onclick = function () {
@@ -22,10 +20,6 @@ window.onload = function () {
             mainPage.removeChild(mainPage.firstChild);
         }
         mainPage.appendChild(allQuestionsHeader());
-
-
-
-
     };
 
 
@@ -36,15 +30,11 @@ window.onload = function () {
         while (tag_page.firstChild) {
             tag_page.removeChild(tag_page.firstChild);
         }
-
         // map() returns an array of tag divs
         // for each() iterates through the array of tag divs
         const tags = model.data.tags.map((tag) => tag.createTagBox()).forEach((tagBox) => tag_page.appendChild(tagBox));
-
-
     }
-
-
+    document.getElementById("searchbox").addEventListener("keypress", search);
 };
 
 function allQuestionsHeader() {
@@ -60,13 +50,13 @@ function allQuestionsHeader() {
     // button1.id = "ask_question";
     // button1.textContent = "Ask Question";
     // button1.onclick = askQuestionForm;
-    divR1.appendChild(createAskQuestionButton());  
+    divR1.appendChild(createAskQuestionButton());
     divHeader.appendChild(divR1);
 
     const divR2 = document.createElement("div");
     divR2.classList = "main-R2"
     const p = document.createElement("p");
-    p.textContent = model.data.questions.length+" questions";
+    p.textContent = model.data.questions.length + " questions";
     divR2.appendChild(p);
     const divThree = document.createElement("div");
     divThree.id = "three_buttons";
@@ -90,7 +80,7 @@ function allQuestionsHeader() {
     divR2.appendChild(divThree);
     divHeader.appendChild(divR2);
 
-    
+
 
     model.data.questions.forEach((question) => {
         divHeader.appendChild(question.createQuestionBox());
@@ -130,9 +120,11 @@ function askQuestionForm() {
         "Limit title to a 100 characters or less",
         "qform_title",
         "text",
-        "Enter Title...",
+        "",
         "p1title",
-        "p2title"
+        "p2title",
+        "errorTitle",
+        ""
     );
 
     createFieldForm(
@@ -142,9 +134,11 @@ function askQuestionForm() {
         "Add details",
         "qform_text",
         "text",
-        "Enter Text...",
+        "",
         "p1text",
-        "p2text"
+        "p2text",
+        "errorText",
+        ""
     );
 
     createFieldForm(
@@ -154,9 +148,11 @@ function askQuestionForm() {
         "Add keywords separated by whitespace",
         "qform_tags",
         "text",
-        "Enter Tags...",
+        "",
         "p1tags",
-        "p2tags"
+        "p2tags",
+        "errorTags",
+        ""
     );
 
     createFieldForm(
@@ -166,9 +162,11 @@ function askQuestionForm() {
         "",
         "qform_username",
         "text",
-        "Enter Username...",
+        "",
         "p1username",
-        "p2username"
+        "p2username",
+        "errorUsername",
+        ""
     );
 
 
@@ -183,7 +181,7 @@ function askQuestionForm() {
 
 
     ask_question_form.addEventListener("submit", createAskQuestion());
-    return ask_question_form
+    return ask_question_form;
 
 }
 
@@ -197,7 +195,9 @@ function createFieldForm(
     itype,
     ivalue,
     p1id,
-    p2id) {
+    p2id,
+    errorId,
+    errorContent) {
     const br = document.createElement("br");
 
     const label = document.createElement("label");
@@ -208,40 +208,82 @@ function createFieldForm(
     const p1 = document.createElement("p");
     p1.id = p1id;
     p1.textContent = lcontent1;
+    p1.classList = "formTitle"
     p1.append(br);
     label.appendChild(p1);
 
     const p2 = document.createElement("p");
     p2.id = p2id;
     p2.textContent = lcontent2;
+    p2.classList = "formHelperText"
     label.appendChild(p2);
+
+
 
     const input = document.createElement("input");
     input.id = iid;
     input.type = itype;
     input.value = ivalue;
+    input.classList = "formInput"
     form.appendChild(input);
-    
+
+    const error = document.createElement("p");
+    error.id = errorId;
+    error.textContent = errorContent;
+    error.classList = "formErrorText"
+    form.appendChild(error);
+
 }
 
 function createAskQuestion() {
     return (event) => {
         event.preventDefault();
         const title = document.getElementById("qform_title").value;
+        const validTitle = !(title.trim().length > 100 || title.trim() === "")
+        if (title.trim().length > 100) {
+            document.getElementById("errorTitle").textContent = "Title cannot be more than 100 characters"
+        }
+        if (title.trim() === "") {
+            document.getElementById("errorTitle").textContent = "Title cannot be empty"
+        }
+
         const text = document.getElementById("qform_text").value;
+        const validText = !(text.trim() === "")
+        if (text.trim() === "") {
+            document.getElementById("errorText").textContent = "Text cannot be empty"
+        }
+
         const tags = document.getElementById("qform_tags").value.split(" ").map((tag) => {
             return tag.toLowerCase()
         }).filter((tag) => {
             return tag !== ""
         });
+        const validTags = !(tags.length > 5 || tags.filter((tag) => tag.length > 10).length !== 0 || tags.length === 0)
+        if (tags.length > 5) {
+            document.getElementById("errorTags").textContent = "No. of tags cannot exceed 5"
+        }
+        if (tags.filter((tag) => tag.length > 10).length !== 0) {
+            document.getElementById("errorTags").textContent = "Each tag length cannot exceed 10 characters"
+        }
+        if (tags.length === 0) {
+            document.getElementById("errorTags").textContent = "Must have at least 1 tag"
+        }
+
         const username = document.getElementById("qform_username").value;
+        const validUsername = !(username.trim() === "")
+        if (username.trim() === "") {
+            document.getElementById("errorUsername").textContent = "Username cannot be empty"
+        }
 
-        const unique_tags = new Set(tags);
-        const tag_ids = model.getTagIds(Array.from(unique_tags));
+        if (validTitle && validText && validTags && validUsername) {
+            const unique_tags = new Set(tags);
+            const tag_ids = model.getTagIds(Array.from(unique_tags));
 
-        const question = new Question(model, title, text, tag_ids, username);
-        model.data.questions.push(question);      
-    } 
+            const question = new Question(model, title, text, tag_ids, username);
+            model.data.questions.push(question);
+
+        }
+    }
 }
 
 export function createAskQuestionButton() {
@@ -272,6 +314,8 @@ export function answerForm(question) {
         "text",
         "",
         "",
+        "",
+        "errorAnsName",
         ""
     )
 
@@ -284,10 +328,12 @@ export function answerForm(question) {
         "text",
         "",
         "",
+        "",
+        "errorAnsText",
         ""
     )
 
-    
+
 
     const answerSubmit = document.createElement("input");
     answerSubmit.id = "answerSubmit";
@@ -305,20 +351,23 @@ function createAnswer(question) {
     return (event) => {
         event.preventDefault();
         const username = document.getElementById("usernameInput").value;
+        if (username.trim() === "") {
+            document.getElementById("errorAnsName").textContent = "Username cannot be empty";
+        }
         const answerText = document.getElementById("answerTextInput").value;
-        const answer = new Answer(answerText,username);
-        question.ansIds.push(answer.aid);
-        model.data.answers.push(answer);
-        console.log(model);
+        if (answerText.trim() === "") {
+            document.getElementById("errorAnsText").textContent = "Text cannot be empty";
+        }
+        if (username.trim() !== "" && answerText.trim() !== "") {
+            const answer = new Answer(answerText, username);
+            question.ansIds.push(answer.aid);
+            model.data.answers.push(answer);
+            console.log(model);
+        }
     }
-    
 
-
-
-    
 }
 
-// function assigned to newest 
 function sortbyNewest() {
     model.data.questions.sort((a, b) => a.askDate - b.askDate).reverse();
     console.log(model.data.questions);
@@ -327,6 +376,14 @@ function sortbyNewest() {
         mainPage.removeChild(mainPage.firstChild);
     }
     mainPage.appendChild(allQuestionsHeader());
+
+}
+
+function search(event) {
+    const searchText = document.getElementById("searchbox").value;
+    const tags = searchText.match(/\[([^\]]+)\]/g).map(char => char.slice(1, -1));
+    const question = searchText.split(/\[[^\]]+\]/g).filter(Boolean);
+
 
 }
 
