@@ -10,7 +10,7 @@ window.onload = function () {
     while (mainPage.firstChild) {
         mainPage.removeChild(mainPage.firstChild);
     }
-    mainPage.appendChild(allQuestionsHeader());
+    mainPage.appendChild(allQuestionsHeader("All Questions",model.data.questions));
 
     //Creating event listners for questions, tags
     document.getElementById("questions").onclick = function () {
@@ -19,7 +19,7 @@ window.onload = function () {
         while (mainPage.firstChild) {
             mainPage.removeChild(mainPage.firstChild);
         }
-        mainPage.appendChild(allQuestionsHeader());
+        mainPage.appendChild(allQuestionsHeader("All Questions",model.data.questions));
     };
 
 
@@ -37,14 +37,14 @@ window.onload = function () {
     document.getElementById("searchbox").addEventListener("keypress", search);
 };
 
-function allQuestionsHeader() {
+export function allQuestionsHeader(pageTitle, questions) {
     const divHeader = document.createElement("main");
     divHeader.id = "questionHeader";
     const divR1 = document.createElement("div");
     divR1.classList = "main-R1";
     const h3 = document.createElement("h3")
     h3.id = "title-All_Questions";
-    h3.textContent = "All Questions";
+    h3.textContent = pageTitle;  //"All Questions"
     divR1.appendChild(h3);
     // const button1 = document.createElement("button");
     // button1.id = "ask_question";
@@ -56,7 +56,7 @@ function allQuestionsHeader() {
     const divR2 = document.createElement("div");
     divR2.classList = "main-R2"
     const p = document.createElement("p");
-    p.textContent = model.data.questions.length + " questions";
+    p.textContent = questions.length + " questions";
     divR2.appendChild(p);
     const divThree = document.createElement("div");
     divThree.id = "three_buttons";
@@ -82,10 +82,17 @@ function allQuestionsHeader() {
 
 
 
-    model.data.questions.forEach((question) => {
+    // model.data.questions.forEach((question) => {
+    //     divHeader.appendChild(question.createQuestionBox());
+
+    // })
+
+    questions.forEach((question) => {
         divHeader.appendChild(question.createQuestionBox());
 
     })
+
+
 
     // document.getElementById("newest").onclick = sortbyNewest;
 
@@ -375,16 +382,68 @@ function sortbyNewest() {
     while (mainPage.firstChild) {
         mainPage.removeChild(mainPage.firstChild);
     }
-    mainPage.appendChild(allQuestionsHeader());
+    mainPage.appendChild(allQuestionsHeader("All Questions",model.data.questions));
 
 }
 
 function search(event) {
     const searchText = document.getElementById("searchbox").value;
-    const tags = searchText.match(/\[([^\]]+)\]/g).map(char => char.slice(1, -1));
-    const question = searchText.split(/\[[^\]]+\]/g).filter(Boolean);
+
+    let tags = searchText.match(/\[([^\]]+)\]/g)
+    tags = (tags !== null) ? tags.map(char => char.slice(1, -1)) : []
+    const questions = searchText.split(/\[[^\]]+\]/g).filter(Boolean).map((q) => q.trim().split(" ")).flat().filter(Boolean);
+    //.filter((q) => q.trim()).map((q) => q.toLowerCase());
+
+
+    // console.log(tags)
+    // console.log(questions)
+
+    const questionMatch = []   //array of question objects
+
+
+    const questionObjects = model.data.questions;
+    questionObjects.map((q) => {
+        const title = q.title.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").trim().toLowerCase().split(" ")
+        const text = q.text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").trim().toLowerCase().split(" ")
+        questions.map((q0) => {
+            if (title.includes(q0) || text.includes(q0)) {
+                questionMatch.push(q)
+            }
+        })
+    })
+
+
+    questionObjects.map((q) => {
+        const tagIds = q.tagId;
+        const tagObjects = model.getTagsByIds(tagIds)
+        tags.map((t) => {
+            tagObjects.map((tO) => {
+                if (tO.name === t) {
+                    questionMatch.push(q);
+                }
+            })
+
+        })
+    })
+
+    const uniqueSet = new Set(questionMatch)
+    const uniqueQuestionMatch = Array.from(uniqueSet);
+
+    console.log(uniqueQuestionMatch)
+
+    const mainPage = document.getElementById("main");
+    while (mainPage.firstChild) {
+        mainPage.removeChild(mainPage.firstChild);
+    }
+    mainPage.appendChild(allQuestionsHeader("Search Results", uniqueQuestionMatch));
+
+
+
 
 
 }
 
+function createSearchPage() {
+
+}
 

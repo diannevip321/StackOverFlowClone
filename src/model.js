@@ -5,6 +5,7 @@ import Question from "./Question.js";
 
 
 
+
 export class Model {
     constructor() {
         this.data = {
@@ -124,6 +125,12 @@ export class Model {
         tagIds.forEach((tagIds) => tags_array.push(this.getTagById(tagIds)));
         return tags_array;
         
+    }
+
+    getQuestionsByTagId = (tagId) => {
+
+        return this.data.questions.filter((question) => question.tagId.includes(tagId));
+
     }
 
 

@@ -177,7 +177,8 @@ main > .main-R1{
 #ask_question{
     color: aliceblue;
     background-color: rgb(86, 139, 204);
-   
+    height: 40%;
+
   }
 
 main > .main-R2{
@@ -257,6 +258,7 @@ main > .main-R2{
     justify-content: space-between;
     /* padding: 2%; */
     height: 35%;
+    /* padding-top: 3%; */
 
 }
 
