@@ -318,3 +318,12 @@ main > .main-R2{
     padding-left: 25%;
     padding-right: 25%;
 }
+
+#qform_submit{
+    color: aliceblue;
+    background-color: rgb(86, 139, 204);
+    height: 5%;
+    width: 25%;
+    font-size: medium;
+
+  }

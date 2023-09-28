@@ -26,7 +26,7 @@ export default class Tag {
             while (mainPage.firstChild) {
                 mainPage.removeChild(mainPage.firstChild);
             }
-            mainPage.appendChild(allQuestionsHeader("All Questions", model.getQuestionsByTagId(this.tid)));
+            mainPage.appendChild(allQuestionsHeader(this.name +" Questions", model.getQuestionsByTagId(this.tid)));
 
         })
 

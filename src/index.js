@@ -10,7 +10,7 @@ window.onload = function () {
     while (mainPage.firstChild) {
         mainPage.removeChild(mainPage.firstChild);
     }
-    mainPage.appendChild(allQuestionsHeader("All Questions",model.data.questions));
+    mainPage.appendChild(allQuestionsHeader("All Questions", model.data.questions));
 
     //Creating event listners for questions, tags
     document.getElementById("questions").onclick = function () {
@@ -19,7 +19,7 @@ window.onload = function () {
         while (mainPage.firstChild) {
             mainPage.removeChild(mainPage.firstChild);
         }
-        mainPage.appendChild(allQuestionsHeader("All Questions",model.data.questions));
+        mainPage.appendChild(allQuestionsHeader("All Questions", model.data.questions));
     };
 
 
@@ -44,12 +44,8 @@ export function allQuestionsHeader(pageTitle, questions) {
     divR1.classList = "main-R1";
     const h3 = document.createElement("h3")
     h3.id = "title-All_Questions";
-    h3.textContent = pageTitle;  //"All Questions"
+    h3.textContent = pageTitle;  
     divR1.appendChild(h3);
-    // const button1 = document.createElement("button");
-    // button1.id = "ask_question";
-    // button1.textContent = "Ask Question";
-    // button1.onclick = askQuestionForm;
     divR1.appendChild(createAskQuestionButton());
     divHeader.appendChild(divR1);
 
@@ -283,11 +279,18 @@ function createAskQuestion() {
         }
 
         if (validTitle && validText && validTags && validUsername) {
+
             const unique_tags = new Set(tags);
             const tag_ids = model.getTagIds(Array.from(unique_tags));
 
             const question = new Question(model, title, text, tag_ids, username);
             model.data.questions.push(question);
+            const mainPage = document.getElementById("main");
+            while (mainPage.firstChild) {
+                mainPage.removeChild(mainPage.firstChild);
+            }
+            mainPage.appendChild(allQuestionsHeader("All Questions", model.data.questions));
+
 
         }
     }
@@ -382,7 +385,7 @@ function sortbyNewest() {
     while (mainPage.firstChild) {
         mainPage.removeChild(mainPage.firstChild);
     }
-    mainPage.appendChild(allQuestionsHeader("All Questions",model.data.questions));
+    mainPage.appendChild(allQuestionsHeader("All Questions", model.data.questions));
 
 }
 
