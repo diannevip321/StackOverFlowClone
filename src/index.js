@@ -32,10 +32,45 @@ window.onload = function () {
         }
         // map() returns an array of tag divs
         // for each() iterates through the array of tag divs
-        const tags = model.data.tags.map((tag) => tag.createTagBox()).forEach((tagBox) => tag_page.appendChild(tagBox));
+        // const tags = model.data.tags.map((tag) => tag.createTagBox()).forEach((tagBox) => tag_page.appendChild(tagBox));
+        tag_page.appendChild(createTagPage());
     }
     document.getElementById("searchbox").addEventListener("keypress", search);
 };
+
+function createTagPage() {
+    const tagPage = document.createElement("div");
+    const tagHeader = document.createElement("div");
+    tagHeader.classList = "tagHeader"
+    tagPage.appendChild(tagHeader);
+    const numTags = document.createElement("h1")
+    //numTags.classList = "tagHeader"
+    numTags.textContent = model.data.tags.length + " Tags";
+    tagHeader.appendChild(numTags)
+    const allTags = document.createElement("h1")
+    //allTags.classList = "tagHeader"
+    allTags.textContent = "All Tags";
+    tagHeader.appendChild(allTags)
+    tagHeader.appendChild(createAskQuestionButton());
+
+    const tagBoxes = document.createElement("div");
+    tagBoxes.classList = "tagBoxes"
+
+    let count = 0;
+    for(let i = 0; i < model.data.tags.length; i+=3){
+        count += 1;
+        const tagDiv = document.createElement("div")
+        tagDiv.classList = "tagDiv"
+        for(let j = i; j < (i+3) && (j < model.data.tags.length) ; j++){
+            tagDiv.appendChild(model.data.tags[j].createTagBox());
+        }
+        tagBoxes.appendChild(tagDiv)
+    }
+    tagPage.appendChild(tagBoxes);
+    return tagPage
+
+
+}
 
 export function allQuestionsHeader(pageTitle, questions) {
     const divHeader = document.createElement("main");
@@ -66,11 +101,13 @@ export function allQuestionsHeader(pageTitle, questions) {
     button3.id = "active";
     button3.textContent = "Active";
     button3.classList = "three-buttons";
+    button3.onclick = sortByActive;
     divThree.appendChild(button3);
     const button4 = document.createElement("button");
     button4.id = "unanswered";
     button4.textContent = "Unanswered";
     button4.classList = "three-buttons";
+    button4.onclick = sortByUnanswered;
     divThree.appendChild(button4);
 
     divR2.appendChild(divThree);
@@ -223,9 +260,9 @@ function createFieldForm(
 
 
 
-    const input = document.createElement("input");
+    const input = document.createElement("textarea");  //input
     input.id = iid;
-    input.type = itype;
+    // input.type = itype;
     input.value = ivalue;
     input.classList = "formInput"
     form.appendChild(input);
@@ -386,6 +423,40 @@ function sortbyNewest() {
         mainPage.removeChild(mainPage.firstChild);
     }
     mainPage.appendChild(allQuestionsHeader("All Questions", model.data.questions));
+}
+
+function sortByUnanswered() {
+    const unansweredQ = model.data.questions.filter((question) => question.ansIds.length === 0);
+    const mainPage = document.getElementById("main");
+    while (mainPage.firstChild) {
+        mainPage.removeChild(mainPage.firstChild);
+    }
+    mainPage.appendChild(allQuestionsHeader("All Questions", unansweredQ));
+}
+
+function sortByActive(){
+    model.data.answers.sort((a,b) => a.ansDate - b.ansDate).reverse();
+    const ansIds = model.data.answers.map((answer) => {return answer.aid});
+    const activeQ = [];
+    ansIds.forEach((ansId) => {
+        const questions = model.data.questions;
+        activeQ.push(questions.find((q) => q.ansIds.includes(ansId)))
+    })
+    const unansweredQ = model.data.questions.filter((question) => question.ansIds.length === 0);
+    unansweredQ.forEach((q) => activeQ.push(q));
+
+    const uniqueActiveQ = new Set(activeQ);
+    const activeQuestions = Array.from(uniqueActiveQ);
+
+    const mainPage = document.getElementById("main");
+    while (mainPage.firstChild) {
+        mainPage.removeChild(mainPage.firstChild);
+    }
+    mainPage.appendChild(allQuestionsHeader("All Questions", activeQuestions));
+
+
+// activeArray.push(question.filter((q) => q.ansIds.includes(ansId)));
+
 
 }
 

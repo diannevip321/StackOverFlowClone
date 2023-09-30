@@ -207,16 +207,7 @@ main > .main-R2{
 
 }
 
-.tagbox{
-    border: dashed;
-    margin: auto;
-    width: 20%;
-    height: 40%;
-    text-align: center;
-  
-    
 
-}
 
 .questionBox{
     display: flex;
@@ -268,8 +259,7 @@ main > .main-R2{
     justify-content: space-between;
     /* padding: 2%; */
     
-    border-bottom: dashed;
-    border-color: lightgray;
+   
     height: 65%;
    
    
@@ -280,6 +270,8 @@ main > .main-R2{
     height : 40%;
     padding-right: 2%;
     padding-left: 2%;
+    border-bottom: dashed;
+    border-color: lightgray;
 }
 
 #ask_question_form{
@@ -306,12 +298,25 @@ main > .main-R2{
 }
 
 .formInput{
-    width: 65%;
-    height: 5%
+    width: 80%;
+    height: 5%;
+    
+    
+
 }
 
 #qform_text{
-    height:25%
+    height:35%;
+    text-overflow: scroll ;
+    resize: none;
+
+
+
+
+}
+
+#qform_text::placeholder{
+    text-align: left;
 }
 
 #answerForm{
@@ -327,3 +332,63 @@ main > .main-R2{
     font-size: medium;
 
   }
+
+.answerBox{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-bottom: dashed;
+    border-color: lightgray;
+}
+
+.questionAnswers {
+    overflow: scroll;
+    height: 40%;
+}
+
+.postAnswer{
+    color: aliceblue;
+    background-color: rgb(86, 139, 204);
+    height: 5%;
+    width: 15%;
+    font-size: medium;
+    margin-left: 2%;
+
+}
+
+.tagDiv{
+    display: flex;
+    flex-direction: row;
+    padding-top: 2%;
+    justify-content: space-evenly;
+    height: 30%;
+    
+
+}
+
+.tagHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2%;
+    padding-bottom: 5%;
+    height: 10%
+    
+}
+
+.tagbox{
+    border: dashed;
+    margin: 0%;
+    width: 20%;
+    height: 90%;
+    text-align: center;
+  
+    
+
+}
+
+.tagBoxes{
+    overflow: scroll;
+    height: 85%;
+}

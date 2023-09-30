@@ -1,6 +1,7 @@
 import model from "./model.js";
 import { createAskQuestionButton } from "./index.js";
 import { answerForm } from "./index.js";
+import { getTimeString } from "./Utilities.js";
 
 
 export default class Question {
@@ -70,7 +71,7 @@ export default class Question {
         const divRight = document.createElement("div");
         divRight.classList = "questionUsernameTime";
         const p3 = document.createElement("p");
-        p3.textContent = this.getTimeString(new Date());
+        p3.textContent = getTimeString(new Date(), this.askedBy, this.askDate);
         divRight.appendChild(p3);
         div.appendChild(divRight);
 
@@ -78,72 +79,72 @@ export default class Question {
 
     }
 
-    getTimeString = (currentTime) => {
-        // const currentTime = new Date();
-        const elapasedTimeSeconds = Math.floor((currentTime.getTime() - this.askDate.getTime()) / 1000);
-        const elapasedTimeMinutes = Math.floor(elapasedTimeSeconds / 60);
-        const elapasedTimeHours = Math.floor(elapasedTimeMinutes / 60);
-        const elapasedTimeDays = Math.floor(elapasedTimeHours / 24);
-        const elapsedTimeYears = Math.floor(elapasedTimeDays / 365);
+    // getTimeString = (currentTime) => {  
+    //     // const currentTime = new Date();
+    //     const elapasedTimeSeconds = Math.floor((currentTime.getTime() - this.askDate.getTime()) / 1000);
+    //     const elapasedTimeMinutes = Math.floor(elapasedTimeSeconds / 60);
+    //     const elapasedTimeHours = Math.floor(elapasedTimeMinutes / 60);
+    //     const elapasedTimeDays = Math.floor(elapasedTimeHours / 24);
+    //     const elapsedTimeYears = Math.floor(elapasedTimeDays / 365);
 
-        console.log(elapasedTimeSeconds);
-        console.log(elapasedTimeMinutes);
+    //     console.log(elapasedTimeSeconds);
+    //     console.log(elapasedTimeMinutes);
 
-        if (elapasedTimeMinutes === 0) {
-            return `${this.askedBy} asked ${elapasedTimeSeconds} seconds ago.`
-        }
-        else if (elapasedTimeHours === 0) {
-            return `${this.askedBy} asked ${elapasedTimeMinutes} minutes ago.`
-        }
-        else if (elapasedTimeDays === 0) {
-            return `${this.askedBy} asked ${elapasedTimeHours} hours ago.`
-        }
-        else if (elapsedTimeYears === 0) {
-            const month = this.askDate.toLocaleString('default', { month: 'short' });
-            const day = this.askDate.getDate();
-            const hours = this.askDate.getHours();
-            const mins = this.askDate.getMinutes();
+    //     if (elapasedTimeMinutes === 0) {
+    //         return `${this.askedBy} asked ${elapasedTimeSeconds} seconds ago.`
+    //     }
+    //     else if (elapasedTimeHours === 0) {
+    //         return `${this.askedBy} asked ${elapasedTimeMinutes} minutes ago.`
+    //     }
+    //     else if (elapasedTimeDays === 0) {
+    //         return `${this.askedBy} asked ${elapasedTimeHours} hours ago.`
+    //     }
+    //     else if (elapsedTimeYears === 0) {
+    //         const month = this.askDate.toLocaleString('default', { month: 'short' });
+    //         const day = this.askDate.getDate();
+    //         const hours = this.askDate.getHours();
+    //         const mins = this.askDate.getMinutes();
 
-            if (hours < 10 && mins < 10) {
-                return `${this.askedBy} asked ${month} ${day} at 0${hours}:0${mins}.`
-            }
-            else if (hours < 10) {
-                return `${this.askedBy} asked ${month} ${day} at 0${hours}:${mins}.`
-            }
-            else if (mins < 10) {
-                return `${this.askedBy} asked ${month} ${day} at ${hours}:0${mins}.`
-            }
-            else {
-                return `${this.askedBy} asked ${month} ${day} at ${hours}:${mins}.`
-            }
+    //         if (hours < 10 && mins < 10) {
+    //             return `${this.askedBy} asked ${month} ${day} at 0${hours}:0${mins}.`
+    //         }
+    //         else if (hours < 10) {
+    //             return `${this.askedBy} asked ${month} ${day} at 0${hours}:${mins}.`
+    //         }
+    //         else if (mins < 10) {
+    //             return `${this.askedBy} asked ${month} ${day} at ${hours}:0${mins}.`
+    //         }
+    //         else {
+    //             return `${this.askedBy} asked ${month} ${day} at ${hours}:${mins}.`
+    //         }
 
 
 
-        }
-        else if (elapsedTimeYears >= 1) {
-            const year = this.askDate.getFullYear();
-            const month = this.askDate.toLocaleString('default', { month: 'short' });
-            const day = this.askDate.getDate();
-            const hours = this.askDate.getHours();
-            const mins = this.askDate.getMinutes();
+    //     }
+    //     else if (elapsedTimeYears >= 1) {
+    //         const year = this.askDate.getFullYear();
+    //         const month = this.askDate.toLocaleString('default', { month: 'short' });
+    //         const day = this.askDate.getDate();
+    //         const hours = this.askDate.getHours();
+    //         const mins = this.askDate.getMinutes();
 
-            if (hours < 10 && mins < 10) {
-                return `${this.askedBy} asked ${month} ${day}, ${year} at 0${hours}:0${mins}.`
-            }
-            else if (hours < 10) {
-                return `${this.askedBy} asked ${month} ${day}, ${year} at 0${hours}:${mins}.`
-            }
-            else if (mins < 10) {
-                return `${this.askedBy} asked ${month} ${day}, ${year} at ${hours}:0${mins}.`
-            }
-            else {
-                return `${this.askedBy} asked ${month} ${day}, ${year} at ${hours}:${mins}.`
-            }
+    //         if (hours < 10 && mins < 10) {
+    //             return `${this.askedBy} asked ${month} ${day}, ${year} at 0${hours}:0${mins}.`
+    //         }
+    //         else if (hours < 10) {
+    //             return `${this.askedBy} asked ${month} ${day}, ${year} at 0${hours}:${mins}.`
+    //         }
+    //         else if (mins < 10) {
+    //             return `${this.askedBy} asked ${month} ${day}, ${year} at ${hours}:0${mins}.`
+    //         }
+    //         else {
+    //             return `${this.askedBy} asked ${month} ${day}, ${year} at ${hours}:${mins}.`
+    //         }
 
-        }
+    //     }
 
-        return "Hello Peets";
-    }
+    //     return "Hello Peets";
+    // }
 
     createQuestionPage = () => {
         const questionPage = document.createElement("div");
@@ -172,18 +173,22 @@ export default class Question {
         textBody.textContent = this.text;
         questionHeaderR2.appendChild(textBody);
         const date = document.createElement("p");
-        date.textContent = this.getTimeString(new Date());
+        date.textContent = getTimeString(new Date(), this.askedBy, this.askDate);
         questionHeaderR2.appendChild(date);
         questionHeader.appendChild(questionHeaderR2);
         questionPage.appendChild(questionHeader);
 
 
         const questionAnswers = document.createElement("div");
+        questionAnswers.classList = "questionAnswers"
+        const answers = model.getAnswersByAnsIds(this.ansIds);
+        answers.forEach((answer) => questionAnswers.appendChild(answer.createAnswerBox()));
         questionPage.appendChild(questionAnswers);
 
         const postAnswer = document.createElement("div");
         const postAnswerButton = document.createElement("button");
         postAnswerButton.textContent = "Answer Question";
+        postAnswerButton.classList = "postAnswer"
         postAnswerButton.addEventListener("click", () => {
             const mainPage = document.getElementById("main");
             while (mainPage.firstChild) {

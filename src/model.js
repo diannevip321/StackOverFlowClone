@@ -1,11 +1,6 @@
 import Tag from "./Tag.js";
 import Question from "./Question.js";
 
-
-
-
-
-
 export class Model {
     constructor() {
         this.data = {
@@ -130,6 +125,19 @@ export class Model {
     getQuestionsByTagId = (tagId) => {
 
         return this.data.questions.filter((question) => question.tagId.includes(tagId));
+
+    }
+
+    getAnswerByAnsId = (ansId) => {
+
+        return this.data.answers.find((answer) => answer.aid === ansId);
+    }
+
+    getAnswersByAnsIds = (ansIds) => {
+
+        const ansArray = [];
+        ansIds.forEach((ansId) => ansArray.push(this.getAnswerByAnsId(ansId)));
+        return ansArray;
 
     }
 

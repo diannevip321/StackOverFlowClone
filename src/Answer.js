@@ -1,4 +1,4 @@
-
+import { getTimeString } from "./Utilities.js";
 export default class Answer{
     
     static aid = 1;
@@ -15,16 +15,29 @@ export default class Answer{
 
     createAnswerBox = () => {
         const divAnswerBox = document.createElement("div");
-        divAnswerBox.classList = "answeBox"
+        divAnswerBox.classList = "answerBox"
         const divAnswerText = document.createElement("div");
         const answerText = document.createElement("p")
-        answerText.id = "answerText";
+        answerText.classList = "answerText";
+        answerText.textContent = this.text;
         divAnswerText.appendChild(answerText);
-
         divAnswerBox.appendChild(divAnswerText);
 
+
+
         const divAnswerUsernameDate = document.createElement("div");
+        const userName = document.createElement("p");
+        userName.classList = "ansUserName";
+        userName.textContent = this.ansBy;
+        divAnswerUsernameDate.appendChild(userName);
+        const ansDate = document.createElement("p");
+        ansDate.classList = "ansDate";
+        ansDate.textContent = getTimeString(new Date(), "", this.ansDate, "answered")
+        divAnswerUsernameDate.appendChild(ansDate);
+
+        
         divAnswerBox.appendChild(divAnswerUsernameDate);
+        return divAnswerBox;
 
 
     }
